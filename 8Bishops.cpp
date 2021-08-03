@@ -1,13 +1,48 @@
-/**************************
+/******************************************************************************
 
 Welcome to GDB Online.
 GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
 C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
 Code, Compile, Run and Debug online from anywhere in world.
 
-***************************/
+*******************************************************************************/
 #include<bits/stdc++.h>
 using namespace std;
+bool checkPos(int r, int c, int n, vector<string> &V);
+void Bishop(int i, int n, vector<string> &V, vector<vector<string>> &ans);
+
+int main()
+{
+	//8-Bishops
+	int n = 8;
+	vector<string> V;
+
+	string S = "";
+	for (int j = 0; j < n; j++)S += ',';
+
+	for (int i = 0; i < n; i++)
+	{
+		V.push_back(S);
+	}
+
+	vector<vector<string>> ans;
+
+	//Calling recursive helper function
+	Bishop(0, n, V, ans);
+	
+	//Printing all possible solutions
+	for (int i = 0; i < ans.size(); i++)
+	{
+		for (int j = 0; j < ans[i].size(); j++)
+		{
+			cout << ans[i][j] << endl;
+		}
+		cout << endl << endl;
+	}
+
+	
+}
+
 
 //Position validating function, based on previously positioned Bishops
 bool checkPos(int r, int c, int n, vector<string> &V)
@@ -42,37 +77,9 @@ void Bishop(int i, int n, vector<string> &V, vector<vector<string>> &ans)
         {
         	V[i][j] = 'B';
         	Bishop(i + 1, n, V, ans);
-        	V[i][j] = '.';
+        	V[i][j] = ',';
         }
     }
-}
-
-int main()
-{
-	//8-Bishops
-	int n = 8;
-	vector<string> V;
-
-	string S = "";
-	for (int j = 0; j < n; j++)S += '.';
-
-	for (int i = 0; i < n; i++)
-	{
-		V.push_back(S);
-	}
-
-	vector<vector<string>> ans;
-
-	//Calling recursive helper function
-	Bishop(0, n, V, ans);
-
-	//Printing all possible solutions
-	for (int i = 0; i < ans.size(); i++)
-	{
-		for (int j = 0; j < ans[i].size(); j++)
-		{
-			cout << ans[i][j] << endl;
-		}
-		cout << endl << endl;
-	}
+    
+    
 }
